@@ -10,13 +10,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     public LayerMask groundLayer;
     private Rigidbody2D rb;
-    private BoxCollider2D boxCollider;
+    private CapsuleCollider2D capsuleCollider;
     private SpriteRenderer spriteRenderer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        boxCollider = GetComponent<BoxCollider2D>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -48,8 +48,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private bool IsGrounded()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(
-            boxCollider.bounds.center, 
-            boxCollider.bounds.size, 
+            capsuleCollider.bounds.center, 
+            capsuleCollider.bounds.size, 
             0f, 
             Vector2.down, 
             0.1f, 
