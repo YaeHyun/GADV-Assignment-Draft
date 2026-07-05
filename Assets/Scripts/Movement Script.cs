@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class MovementScript : MonoBehaviour
 {
     public float movementSpeed = 5f;
     public float jumpForce = 0.01f;

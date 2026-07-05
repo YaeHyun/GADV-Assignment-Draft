@@ -1,7 +1,12 @@
 using UnityEngine;
+using TMPro;
 
 public class EquationManager : MonoBehaviour
 {
+
+    public TMP_Text equationText;
+    private string currentEquation = "";
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,5 +17,11 @@ public class EquationManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void AddValue(string value)
+    {
+        currentEquation += value + " ";
+        equationText.text = currentEquation;
     }
 }

@@ -253,6 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 289560224}
+  - component: {fileID: 289560225}
   m_Layer: 0
   m_Name: EquationManager
   m_TagString: Untagged
@@ -275,6 +276,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &289560225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289560223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1a1b911a568a4240a01acf450c0cb71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquationManager
+  equationText: {fileID: 992715855}
 --- !u!1 &494977315
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +333,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 494977315}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
@@ -687,7 +701,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_MaskInteraction: 0
   m_Sprite: {fileID: -6447722072507503168, guid: 10f3cacccb0c4c547be76836eba20664, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -886,6 +900,7 @@ GameObject:
   - component: {fileID: 699690910}
   - component: {fileID: 699690909}
   - component: {fileID: 699690912}
+  - component: {fileID: 699690913}
   m_Layer: 0
   m_Name: Apple_0
   m_TagString: Untagged
@@ -1017,7 +1032,23 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.3
+  m_Radius: 0.5
+--- !u!114 &699690913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699690907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce8c5e35049f5154a8b7f4a2b5bd8e05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectableScript
+  value: 14
+  interactionText: {fileID: 494977315}
+  equationManager: {fileID: 289560225}
+  valueText: {fileID: 1832995519}
 --- !u!1 &992715853
 GameObject:
   m_ObjectHideFlags: 0
