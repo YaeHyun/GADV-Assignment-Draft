@@ -40,17 +40,20 @@ public class CollectableScript : MonoBehaviour
 
     void Collect()
     {
-        collected = true;
 
-        equationManager.AddValue(value);
+        bool collectAllowed = equationManager.AddValue(value);
+        if (collectAllowed)
+        {
+            collected = true;
 
-        interactionText.SetActive(false);
+            interactionText.SetActive(false);
 
-        Color c = spriteRenderer.color;
-        c.a = 0.3f;
-        spriteRenderer.color = c;
+            Color c = spriteRenderer.color;
+            c.a = 0.3f;
+            spriteRenderer.color = c;
 
-        col.enabled = false;
+            col.enabled = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
