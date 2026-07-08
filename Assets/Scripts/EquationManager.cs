@@ -6,11 +6,14 @@ public class EquationManager : MonoBehaviour
 {
 
     public TMP_Text equationText;
-    private string currentEquation = "";
     
     private List<int> numbers = new List<int>();
     private List<string> operators = new List<string>();
 
+    private string leftNumber;
+    private string op;
+    private string rightNumber;
+    public int finalNumber = 35;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,8 +40,7 @@ public class EquationManager : MonoBehaviour
             {
             operators.Add(value);
             Debug.Log(string.Join(", ", operators));
-            currentEquation += value + " ";
-            equationText.text = currentEquation;
+            UIEquationUpdate();
             return true;
             }
         }
@@ -53,8 +55,7 @@ public class EquationManager : MonoBehaviour
             {
             numbers.Add(result);
             Debug.Log(string.Join(", ", numbers));
-            currentEquation += value + " ";
-            equationText.text = currentEquation;
+            UIEquationUpdate();
             return true;
             }
         }
@@ -63,5 +64,37 @@ public class EquationManager : MonoBehaviour
             Debug.Log($"String passed is neither operator or number, {value}"); 
             return false;
         }
+    }
+
+    private void UIEquationUpdate()
+    {
+        if (numbers.Count > 0)
+        {
+            leftNumber = numbers[0].ToString();
+        }
+        else
+        {
+            leftNumber = "_";
+        }
+
+        if (operators.Count > 0)
+        {
+            op = operators[0];
+        }
+        else
+        {
+            op = "_";
+        }
+
+        if (numbers.Count > 1)
+        {
+            rightNumber = numbers[1].ToString();
+        }
+        else
+        {
+            rightNumber = "_";
+        }
+
+        equationText.text = $"{leftNumber} {op} {rightNumber} = {finalNumber.ToString()}";
     }
 }
