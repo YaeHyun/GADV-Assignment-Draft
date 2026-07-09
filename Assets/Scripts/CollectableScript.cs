@@ -32,7 +32,7 @@ public class CollectableScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         if (playerRange && !collected && (Keyboard.current.eKey.wasPressedThisFrame))
+        if (playerRange && !collected && (Keyboard.current.eKey.wasPressedThisFrame))
         {
             Collect();
         }

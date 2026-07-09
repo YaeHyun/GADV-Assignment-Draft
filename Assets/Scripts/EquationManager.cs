@@ -13,7 +13,8 @@ public class EquationManager : MonoBehaviour
     private string leftNumber;
     private string op;
     private string rightNumber;
-    public int finalNumber = 35;
+    private int result;
+    public int finalNumber = 20;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -97,4 +98,47 @@ public class EquationManager : MonoBehaviour
 
         equationText.text = $"{leftNumber} {op} {rightNumber} = {finalNumber.ToString()}";
     }
+
+    public bool EquationCheck()
+    {
+        if (numbers.Count != 2)
+        {
+            Debug.Log("Need 2 numbers");
+            return false;
+        }
+
+        if (operators.Count != 1)
+        {
+            Debug.Log("Needs operator");
+            return false;
+        }
+
+        if (op == "+")
+        {
+            result = numbers[0] + numbers[1];
+        }
+        else if (op == "-")
+        {
+            result = numbers[0] - numbers[1];
+        }
+
+        if (result == finalNumber)
+        {
+            Debug.Log("Correct");
+            return true;
+        }
+        else
+        {
+            Debug.Log("Wrong");
+            return false;
+        }
+    }
+
+    void ResetEquation()
+    {
+        numbers.Clear();
+        operators.Clear();
+        UIEquationUpdate();
+    }
 }
+
