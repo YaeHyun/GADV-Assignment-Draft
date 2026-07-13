@@ -19,13 +19,7 @@ public class EquationManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        UIEquationUpdate();
     }
 
     public bool AddValue(string value)
@@ -134,7 +128,7 @@ public class EquationManager : MonoBehaviour
         }
     }
 
-    void ResetEquation()
+    public void ResetEquation()
     {
         numbers.Clear();
         operators.Clear();

@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class ExitManager : MonoBehaviour
 {
@@ -64,10 +66,14 @@ public class ExitManager : MonoBehaviour
 
         yield return new WaitForSeconds(4f);
 
-        iconCollectable.SetActive(true);
-        valueText.enabled = true;
-        iconResultTrue.SetActive(false);
-        cooldown = false;
+        int current = PlayerPrefs.GetInt("UnlockedLevel", 1);
+
+        if (current < 2)
+        {
+            PlayerPrefs.SetInt("UnlockedLevel", 2);
+        }
+
+        SceneManager.LoadScene("Menu");
     }
 
     IEnumerator FailedRoutine()
@@ -76,6 +82,7 @@ public class ExitManager : MonoBehaviour
         valueText.enabled = false;
         iconResultFalse.SetActive(true);
         Debug.Log("Failed");
+        equationManager.ResetEquation();
 
         yield return new WaitForSeconds(4f);
 
