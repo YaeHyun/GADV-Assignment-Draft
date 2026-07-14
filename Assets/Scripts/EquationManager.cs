@@ -6,6 +6,8 @@ public class EquationManager : MonoBehaviour
 {
 
     public TMP_Text equationText;
+    public GameObject collectibleContainer;
+
     
     private List<int> numbers = new List<int>();
     private List<string> operators = new List<string>();
@@ -16,6 +18,7 @@ public class EquationManager : MonoBehaviour
     private int result;
     public int finalNumber = 20;
 
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -133,6 +136,16 @@ public class EquationManager : MonoBehaviour
         numbers.Clear();
         operators.Clear();
         UIEquationUpdate();
+        ResetCollectibles();
+    }
+
+    void ResetCollectibles()
+    {
+        foreach(Transform child in collectibleContainer.transform)
+        {
+            CollectableScript collectible = child.GetComponent<CollectableScript>();
+            collectible.ResetCollectible();
+        }
     }
 }
 

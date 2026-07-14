@@ -12,7 +12,7 @@ public class CollectableScript : MonoBehaviour
     public TMP_Text valueText;
 
     private bool playerRange = false;
-    private bool collected = false;
+    public bool collected = false;
 
     private SpriteRenderer spriteRenderer;
     private Collider2D col;
