@@ -27,7 +27,7 @@ public class EquationManager : MonoBehaviour
 
     public bool AddValue(string value)
     {
-        if (value == "+" || value == "-")
+        if (value == "+" || value == "-" || value == "x" || value == "/")
         {
             if (operators.Count >= 1)
             {
@@ -117,6 +117,14 @@ public class EquationManager : MonoBehaviour
         else if (op == "-")
         {
             result = numbers[0] - numbers[1];
+        }
+        else if (op == "x")
+        {
+            result = numbers[0] * numbers[1];
+        }
+        else if (op == "/")
+        {
+            result = numbers[0] / numbers[1];
         }
 
         if (result == finalNumber)
