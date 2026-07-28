@@ -12,6 +12,7 @@ public class ExitManager : MonoBehaviour
     public GameObject interactionText;
     public TMP_Text valueText;
     public EquationManager equationManager;
+    public UIManager uiManager;
     public GameObject iconCollectable;
     public GameObject iconResultTrue;
     public GameObject iconResultFalse;
@@ -83,6 +84,8 @@ public class ExitManager : MonoBehaviour
         iconResultFalse.SetActive(true);
         Debug.Log("Failed");
         equationManager.ResetEquation();
+        uiManager.DeductHeart();
+
 
         yield return new WaitForSeconds(4f);
 
