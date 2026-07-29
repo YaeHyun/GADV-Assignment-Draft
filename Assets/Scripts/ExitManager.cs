@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class ExitManager : MonoBehaviour
 {
     public int value = 20;
+    public int level = 0;
 
     public GameObject interactionText;
     public TMP_Text valueText;
@@ -72,6 +73,10 @@ public class ExitManager : MonoBehaviour
         if (current < 2)
         {
             PlayerPrefs.SetInt("UnlockedLevel", 2);
+        }
+        else if (current < 3 && level == 2)
+        {
+            PlayerPrefs.SetInt("UnlockedLevel", 3);
         }
 
         SceneManager.LoadScene("Menu");

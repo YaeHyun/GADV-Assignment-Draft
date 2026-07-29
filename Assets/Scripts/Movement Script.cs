@@ -24,11 +24,11 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.aKey.isPressed)
+        if (Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed)
         {
             moveInput = -1f;
         }
-        else if (Keyboard.current.dKey.isPressed)
+        else if (Keyboard.current.dKey.isPressed || Keyboard.current.rightArrowKey.isPressed)
         {
             moveInput = 1f;
         }
@@ -39,7 +39,7 @@ public class MovementScript : MonoBehaviour
 
         rb.linearVelocity = new Vector2(moveInput * movementSpeed, rb.linearVelocity.y);
 
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && IsGrounded())
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && IsGrounded() || Keyboard.current.upArrowKey.isPressed && IsGrounded())
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
