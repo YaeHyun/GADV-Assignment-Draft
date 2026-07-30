@@ -66,7 +66,9 @@ public class ExitManager : MonoBehaviour
         iconResultTrue.SetActive(true);
         Debug.Log("Passed");
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(1f);
+        uiManager.FadeOut();
+        yield return new WaitForSeconds(2f);
 
         int current = PlayerPrefs.GetInt("UnlockedLevel", 1);
 
@@ -92,7 +94,7 @@ public class ExitManager : MonoBehaviour
         uiManager.DeductHeart();
 
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
 
         iconCollectable.SetActive(true);
         valueText.enabled = true;

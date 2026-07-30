@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 public class MenuManager : MonoBehaviour
 {
@@ -13,10 +14,13 @@ public class MenuManager : MonoBehaviour
     public Button startButton;
     public Button tutorialButton;
     public Button quitButton;
+    public Image levelUIBackground;
+    private float fadeDuration = 1.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        StartCoroutine(LevelFadeIn());
         levelPanel.SetActive(false);
 
         LoadUnlockedLevels();
@@ -40,22 +44,22 @@ public class MenuManager : MonoBehaviour
 
     public void LoadLevel1()
     {
-        SceneManager.LoadScene("Level1");
+        StartCoroutine(LevelFadeOut("Level1"));  
     }
 
     public void LoadLevel2()
     {
-        SceneManager.LoadScene("Level2");
+        StartCoroutine(LevelFadeOut("Level2"));  
     }
 
     public void LoadLevel3()
     {
-        SceneManager.LoadScene("Level3");
+        StartCoroutine(LevelFadeOut("Level3"));  
     }
 
     public void QuitGame()
     {
-
+        Application.Quit();
     }
 
     public void TutorialSelect()
@@ -70,5 +74,52 @@ public class MenuManager : MonoBehaviour
         level1Button.interactable = true;
         level2Button.interactable = unlocked >= 2;
         level3Button.interactable = unlocked >= 3;
+    }
+
+        IEnumerator LevelFadeIn()
+    {
+        if (levelUIBackground)
+        {
+            Color backgroundC = levelUIBackground.color;
+
+            float elapsedTime = 0f;
+
+            while (elapsedTime < fadeDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                backgroundC.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+
+                levelUIBackground.color = backgroundC;
+
+                yield return null; 
+            }
+
+            backgroundC.a = 0f;
+            levelUIBackground.color = backgroundC;
+        }
+    }
+
+    public IEnumerator LevelFadeOut(string level)
+    {
+        if (levelUIBackground)
+        {
+            Color backgroundC = levelUIBackground.color;
+
+            float elapsedTime = 0f;
+
+            while (elapsedTime < fadeDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                backgroundC.a = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
+
+                levelUIBackground.color = backgroundC;
+
+                yield return null; 
+            }
+
+            backgroundC.a = 1f;
+            levelUIBackground.color = backgroundC;
+            SceneManager.LoadScene(level);
+        }
     }
 }
