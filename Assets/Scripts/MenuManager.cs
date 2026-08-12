@@ -64,7 +64,7 @@ public class MenuManager : MonoBehaviour
 
     public void TutorialSelect()
     {
-
+        StartCoroutine(LevelFadeOut("Tutorial"));  
     }
 
     void LoadUnlockedLevels()

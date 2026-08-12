@@ -40,6 +40,11 @@ public class UIManager : MonoBehaviour
         StartCoroutine(LevelFadeOut());
     }
 
+    public void ExitMainMenu()
+    {
+        StartCoroutine(LevelFadeExit("Menu"));  
+    }
+
     IEnumerator RemoveHeart()
     {
         if (health == 3)
@@ -165,6 +170,30 @@ public class UIManager : MonoBehaviour
 
             backgroundC.a = 1f;
             levelUIBackground.color = backgroundC;
+        }
+    }
+
+        public IEnumerator LevelFadeExit(string level)
+    {
+        if (levelUIBackground)
+        {
+            Color backgroundC = levelUIBackground.color;
+
+            float elapsedTime = 0f;
+
+            while (elapsedTime < fadeDuration)
+            {
+                elapsedTime += Time.deltaTime;
+                backgroundC.a = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
+
+                levelUIBackground.color = backgroundC;
+
+                yield return null; 
+            }
+
+            backgroundC.a = 1f;
+            levelUIBackground.color = backgroundC;
+            SceneManager.LoadScene(level);
         }
     }
 }
