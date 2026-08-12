@@ -68,7 +68,7 @@ public class ExitManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         uiManager.FadeOut();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         int current = PlayerPrefs.GetInt("UnlockedLevel", 1);
 

@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
     public Button startButton;
     public Button tutorialButton;
     public Button quitButton;
+    public Button resetButton;
     public Image levelUIBackground;
     private float fadeDuration = 1.0f;
 
@@ -32,6 +33,7 @@ public class MenuManager : MonoBehaviour
         startButton.gameObject.SetActive(true);
         tutorialButton.gameObject.SetActive(true);
         quitButton.gameObject.SetActive(true);
+        resetButton.gameObject.SetActive(true);
     }
 
     public void OpenLevelSelect()
@@ -40,6 +42,8 @@ public class MenuManager : MonoBehaviour
         startButton.gameObject.SetActive(false);
         tutorialButton.gameObject.SetActive(false);
         quitButton.gameObject.SetActive(false);
+        resetButton.gameObject.SetActive(false);
+        LoadUnlockedLevels();
     }
 
     public void LoadLevel1()
@@ -65,6 +69,11 @@ public class MenuManager : MonoBehaviour
     public void TutorialSelect()
     {
         StartCoroutine(LevelFadeOut("Tutorial"));  
+    }
+
+    public void ResetProgress()
+    {
+        PlayerPrefs.SetInt("UnlockedLevel", 1);
     }
 
     void LoadUnlockedLevels()
