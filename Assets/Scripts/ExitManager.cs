@@ -81,7 +81,7 @@ public class ExitManager : MonoBehaviour
             PlayerPrefs.SetInt("UnlockedLevel", 3);
         }
 
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("WinScene");
     }
 
     IEnumerator FailedRoutine()

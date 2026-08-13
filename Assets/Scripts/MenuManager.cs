@@ -25,6 +25,7 @@ public class MenuManager : MonoBehaviour
         levelPanel.SetActive(false);
 
         LoadUnlockedLevels();
+        levelUIBackground.gameObject.SetActive(true);
     }
 
     public void ReturnSelectLevel()
@@ -85,7 +86,7 @@ public class MenuManager : MonoBehaviour
         level3Button.interactable = unlocked >= 3;
     }
 
-        IEnumerator LevelFadeIn()
+    IEnumerator LevelFadeIn()
     {
         if (levelUIBackground)
         {

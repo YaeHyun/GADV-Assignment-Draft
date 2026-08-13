@@ -12,9 +12,13 @@ public class MovementScript : MonoBehaviour
     private Rigidbody2D rb;
     private CapsuleCollider2D capsuleCollider;
     private SpriteRenderer spriteRenderer;
+
+    private Animator animator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -42,6 +46,43 @@ public class MovementScript : MonoBehaviour
         if (Keyboard.current.spaceKey.wasPressedThisFrame && IsGrounded() || Keyboard.current.upArrowKey.isPressed && IsGrounded())
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        }
+
+        Animation();
+    }
+
+    private void Animation()
+    {
+        if (moveInput > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+        else if (moveInput < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        
+        if (IsGrounded())
+        {
+            if(moveInput == 0)
+            {
+                animator.Play("AnimationIdle");
+            }
+            else
+            {
+                animator.Play("AnimationRun");
+            }
+        }
+        else
+        {
+            if (rb.linearVelocity.y > 0)
+            {
+                animator.Play("AnimationJump");
+            }
+            else
+            {
+                animator.Play("AnimationFall");
+            }
         }
     }
 
