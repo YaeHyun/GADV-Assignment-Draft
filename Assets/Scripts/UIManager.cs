@@ -174,7 +174,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-        public IEnumerator LevelFadeExit(string level)
+    public IEnumerator LevelFadeExit(string level)
     {
         if (levelUIBackground)
         {

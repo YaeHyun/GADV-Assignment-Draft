@@ -18,9 +18,13 @@ public class MenuManager : MonoBehaviour
     public Image levelUIBackground;
     private float fadeDuration = 1.0f;
 
+    public AudioClip clickEffect;
+    private AudioSource audioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(LevelFadeIn());
         levelPanel.SetActive(false);
 
@@ -30,6 +34,7 @@ public class MenuManager : MonoBehaviour
 
     public void ReturnSelectLevel()
     {
+        PlaySound();
         levelPanel.SetActive(false);
         startButton.gameObject.SetActive(true);
         tutorialButton.gameObject.SetActive(true);
@@ -39,6 +44,7 @@ public class MenuManager : MonoBehaviour
 
     public void OpenLevelSelect()
     {
+        PlaySound();
         levelPanel.SetActive(true);
         startButton.gameObject.SetActive(false);
         tutorialButton.gameObject.SetActive(false);
@@ -49,31 +55,37 @@ public class MenuManager : MonoBehaviour
 
     public void LoadLevel1()
     {
-        StartCoroutine(LevelFadeOut("Level1"));  
+        PlaySound();
+        StartCoroutine(LevelFadeOut("Cutscene1"));  
     }
 
     public void LoadLevel2()
     {
-        StartCoroutine(LevelFadeOut("Level2"));  
+        PlaySound();
+        StartCoroutine(LevelFadeOut("Cutscene2"));  
     }
 
     public void LoadLevel3()
     {
-        StartCoroutine(LevelFadeOut("Level3"));  
+        PlaySound();
+        StartCoroutine(LevelFadeOut("Cutscene3"));  
     }
 
     public void QuitGame()
     {
+        PlaySound();
         Application.Quit();
     }
 
     public void TutorialSelect()
     {
+        PlaySound();
         StartCoroutine(LevelFadeOut("Tutorial"));  
     }
 
     public void ResetProgress()
     {
+        PlaySound();
         PlayerPrefs.SetInt("UnlockedLevel", 1);
     }
 
@@ -131,5 +143,10 @@ public class MenuManager : MonoBehaviour
             levelUIBackground.color = backgroundC;
             SceneManager.LoadScene(level);
         }
+    }
+
+    void PlaySound()
+    {
+            audioSource.PlayOneShot(clickEffect);
     }
 }

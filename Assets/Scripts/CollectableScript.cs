@@ -5,10 +5,10 @@ using TMPro;
 public class CollectableScript : MonoBehaviour
 {
 
-    public string value;
+    public string value; // Value of each collectible
 
-    public GameObject interactionText;
-    public EquationManager equationManager;
+    public GameObject interactionText; // Interaction text to collect collectible
+    public EquationManager equationManager; // Gets equation manager 
     public TMP_Text valueText;
 
     private bool playerRange = false;
@@ -17,30 +17,37 @@ public class CollectableScript : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Collider2D col;
     
+    public float floatHeight = 0.1f;
+    public float floatSpeed = 2f;
+    private Vector3 startPosition;
 
+    public AudioClip collectEffect;
+    private AudioSource audioSource;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
 
         interactionText.SetActive(false);
         valueText.text = value;
+
+        startPosition = transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (playerRange && !collected && (Keyboard.current.eKey.wasPressedThisFrame))
         {
             Collect();
         }
+        FloatAnimation();
     }
 
     void Collect()
     {
-
+        audioSource.PlayOneShot(collectEffect);
         bool collectAllowed = equationManager.AddValue(value);
         if (collectAllowed)
         {
@@ -84,4 +91,17 @@ public class CollectableScript : MonoBehaviour
 
         col.enabled = true;
     }
+
+    void FloatAnimation()
+    {
+        float newY = startPosition.y +
+                     Mathf.Sin(Time.time * floatSpeed) * floatHeight;
+
+        transform.position = new Vector3(
+            startPosition.x,
+            newY,
+            startPosition.z
+        );
+    }
+
 }
